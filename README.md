@@ -1,24 +1,34 @@
-# README
+# 家計簿コネクト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+家計簿の記帳を基本的な機能とし、自分の家計簿を公開、他人の家計簿を閲覧することでモチベーションを向上させたり、節約や目標設定の参考に出来ます。
 
-Things you may want to cover:
+### サイトテーマ
+家計簿を共有し合うことで、計画的な節約を助けるサイト
 
-* Ruby version
+### テーマを選んだ理由
+自分がこれから一人暮らしを始めることになり、貯金や娯楽費、交際費などのことも考えるとお金を節約する必要がありました。
+そこで、家計簿で収支を管理、無駄な支出を無くし、貯金や交際費へ充てるお金を作ろうと考えたため、当テーマに決定しました。
+また、家計簿を付けたことのある人へリサーチを行った結果、3日坊主になってしまう人や、目標設定を達成できずただ記帳しているだけになってしまう人も多くいました。
+そうならない為、
+- 自分の家計簿を公開することでホーソーン効果（相手に見られていることを知ることでパフォーマンスが上がる心理効果）を得られ、記帳するモチベーションが向上される。
+- 他人の家計簿を閲覧することで目標設定の参考にしたり、達成可能な目標であることを実感する
+これらの機能で継続的な家計簿の記帳と目標達成を促しています。
+### ターゲットユーザ
+- 節約したい、貯金したいなどで支出を抑えたい人
+- 人に見られているとモチベーションが上がりやすい人
+- 過去に家計簿を付けていたがやめてしまった人
+### 主な利用シーン
+- 買い物の直後や1日の終わりなど、ユーザが家計簿を記帳する時
+- 1カ月の支出を確認し目標の達成度を確認する時
+- 他の人がどのような家計簿を付けているのか知りたいとき
+## 設計書
 
-* System dependencies
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1akHJESeUFJAaBRHavhnMI58Ske2ijQjfIotpOS8-6sU/edit?usp=sharing
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Amazon Linux 2 AMI
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- 仮想環境：AWS
