@@ -10,4 +10,17 @@
 </tabel>
 
 <%= form_with model:@expense, local:true do |f| %>
-<p>日付</p>
+  <div class="field">
+    <%= f.label :date, "日付" %><br />
+    <%= f.date_select :date %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :date, "日付" %><br />
+    <%= f.date_select :date %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :date, "日付" %><br />
+    <%= f.date_select :date %>
+  </div>
