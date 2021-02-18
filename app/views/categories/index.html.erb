@@ -1,0 +1,14 @@
+<%= form_with model:@category, url:'/categories', local:true do |f| %>
+
+  <div class="field">
+    <%= f.label :category_name, "カテゴリー" %><br />
+    <%= f.text_field :category_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+<%= @categories.each do |category| %>
+<%= category.category_name %>
+<% end %>

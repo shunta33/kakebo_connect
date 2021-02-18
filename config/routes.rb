@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :expenses
 
+  resources :categories, only: [:index, :create]
+
   get 'top' => 'homes#top', as: 'top'
   root to: 'homes#top'
   get 'about' => 'homes#about', as: 'about'
