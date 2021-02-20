@@ -1,18 +1,26 @@
-<h2>1月支出履歴</h2>
+<h2><%= @month %>月の支出履歴</h2>
+
+<%= form_with url:'/expenses', local:true, method: :get do |f| %>
+<%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
+<%= f.submit "へ移動" %>
+<% end %>
 <table>
     <tr>
       <th>日付</th>
       <th>カテゴリ</th>
       <th>金額</th>
     </tr>
+    <% @sum = 0 %>
     <% @expenses.each do |expense| %>
     <tr>
       <td><%= expense.date %></td>
-      <td></td>
+      <td><%= expense.expenses_category_id %></td>
       <td><%= expense.expenses_amount %></td>
     </tr>
+    <% @sum += expense.expenses_amount %>
     <% end %>
 </table>
+<p>合計支出<%= @sum %></p>
 
 <%= form_with model:@expense, local:true do |f| %>
   <div class="field">
@@ -33,6 +41,6 @@
 
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "支出を記録する" %>
   </div>
 <% end %>
