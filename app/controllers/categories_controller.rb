@@ -1,12 +1,11 @@
 class CategoriesController < ApplicationController
 
   def index
-    @category = ExpenseCategory.new
-    @categories = ExpenseCategory.all
+    @categories = IncomeCategory.all
   end
 
   def create
-    @category = ExpenseCategory.new(category_params)
+    @category = IncomeCategory.new(category_params)
     @category.save
     redirect_to categories_path
   end
