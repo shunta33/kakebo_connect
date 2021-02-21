@@ -3,8 +3,21 @@ class ExpensesController < ApplicationController
   def index
     @expense = Expense.new
     @expense_categories = ExpenseCategory.all
-    year,month = params[:month].split("/").map(&:to_i)
-    @expenses = Expense.where(user_id: current_user.id).where("date >= :start_date AND date <= :end_date",{start_date: Date.new(year, month, 1), end_date: Date.new(year, month+1, 1)-1})
+    if params[:month].nil?
+      year_month = Date.today.strftime("%Y/%m")
+    else
+      year_month = params[:month]
+    end
+    year, month = year_month.split("/").map(&:to_i)
+    @expenses = Expense
+      .where(user_id: current_user.id)
+      .where(
+        "date >= :start_date AND date <= :end_date",
+        {
+          start_date: Date.new(year, month, 1),
+          end_date: Date.new(year, month, -1)
+        }
+      )
     p @expenses
     @month = month
 

@@ -17,7 +17,7 @@
       <td><%= expense.expenses_category_id %></td>
       <td><%= expense.expenses_amount %></td>
     </tr>
-    <% @sum += expense.expenses_amount %>
+    <% @sum =+ expense.expenses_amount %>
     <% end %>
 </table>
 <p>合計支出<%= @sum %></p>
