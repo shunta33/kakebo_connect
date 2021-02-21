@@ -4,8 +4,9 @@ class CategoriesController < ApplicationController
     @categories = IncomeCategory.all
   end
 
-  def create
+  def create 
     @category = IncomeCategory.new(category_params)
+   
     @category.save
     redirect_to categories_path
   end
