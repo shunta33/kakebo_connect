@@ -4,4 +4,11 @@
     <td>総収入額</td>
     <td>総支出額</td>
   </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% end %>
 </table>
