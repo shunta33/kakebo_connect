@@ -1,6 +1,7 @@
 <h2>マイページ</h2>
 <h4>登録情報</h4>
-<%= link_to "編集する", edit_user_registration_path %>
+<%= link_to "メールアドレス・パスワードを変更", edit_user_registration_path %>
+<%= link_to "プロフィールを変更", edit_user_path(@user.id) %>
 <table>
   <tr>
     <td>ハンドルネーム</td>
