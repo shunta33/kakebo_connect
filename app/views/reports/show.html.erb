@@ -1,0 +1,42 @@
+<h2><%= @user.name %>さんの<%= @month %>月レポート</h2>
+
+<%= form_with url: report_path(params[:id]), local:true, method: :get do |f| %>
+<%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
+<%= f.submit "へ移動" %>
+<% end %>
+
+<table>
+    <tr>
+      <th>日付</th>
+      <th>カテゴリ</th>
+      <th>金額</th>
+    </tr>
+    <% @expenses_sum = 0 %>
+    <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.date %></td>
+      <td><%= expense.expenses_category_id %></td>
+      <td><%= expense.expenses_amount %></td>
+    </tr>
+    <% @expenses_sum += expense.expenses_amount %>
+    <% end %>
+</table>
+<p>合計支出<%= @expenses_sum %></p>
+
+<table>
+    <tr>
+      <th>日付</th>
+      <th>カテゴリ</th>
+      <th>金額</th>
+    </tr>
+    <% @incomes_sum = 0 %>
+    <% @incomes.each do |income| %>
+    <tr>
+      <td><%= income.date %></td>
+      <td><%= income.incomes_category_id %></td>
+      <td><%= income.incomes_amount %></td>
+    </tr>
+    <% @incomes_sum += income.incomes_amount %>
+    <% end %>
+</table>
+<p>合計支出<%= @incomes_sum %></p>
