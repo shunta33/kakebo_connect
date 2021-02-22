@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :expenses
   resources :incomes
-
+  resources :reports
   resources :categories, only: [:index, :create]
 
   get 'top' => 'homes#top', as: 'top'
