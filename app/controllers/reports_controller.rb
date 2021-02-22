@@ -6,6 +6,7 @@ class ReportsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @expense_categories = ExpenseCategory.all
+    @income_categories = IncomeCategory.all
     if params[:month].nil?
       year_month = Date.today.strftime("%Y/%m")
     else
@@ -34,9 +35,9 @@ class ReportsController < ApplicationController
       )
 
     @month = month
-    
-    
-    
+
+
+
   end
 
 
