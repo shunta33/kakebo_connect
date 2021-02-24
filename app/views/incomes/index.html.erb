@@ -26,7 +26,7 @@
 <%= form_with model:@income, local:true do |f| %>
   <div class="field">
     <%= f.label :date, "日付" %><br />
-    <%= f.date_select :date, use_month_numbers:true %>
+    <%= f.date_select :date, use_month_numbers:true, date_separator: '/' %>
   </div>
 
   <div class="field">
