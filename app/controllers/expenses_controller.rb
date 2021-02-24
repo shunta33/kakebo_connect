@@ -1,4 +1,5 @@
 class ExpensesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @expense = Expense.new
@@ -18,7 +19,6 @@ class ExpensesController < ApplicationController
           end_date: Date.new(year, month, -1)
         }
       )
-    p @expenses
     @month = month
 
   end
