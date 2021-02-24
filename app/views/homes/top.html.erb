@@ -1,11 +1,28 @@
-<h2>家計簿コネクトへようこそ！</h2>
-<p>
-家計簿コネクトは家計簿の記帳・公開サイトです！<br>
-節約の為に家計簿をつけ始めたけど3日坊主になってしまった…<br>
-家計簿は付けていたけど支出が多く目標設定をオーバーしてしまった…<br>
-などの経験はありませんか？<br>
-当サイトでは日々の記帳は勿論、家計簿の公開、閲覧が可能です。<br>
-他の家計簿主さんと繋がり、やりくり上手を目指しましょう。
-</p>
-<%= link_to "新規会員登録", new_user_registration_path %>
-<%= link_to "ログイン", new_user_session_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3 pt-3">
+      <h2>家計簿コネクトへようこそ！</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3 p-3">
+      <p>
+      家計簿コネクトは家計簿の記帳・公開サイトです！<br>
+      節約の為に家計簿をつけ始めたけど3日坊主になってしまった…<br>
+      家計簿は付けていたけど支出が多く目標設定をオーバーしてしまった…<br>
+      などの経験はありませんか？<br>
+      当サイトでは日々の記帳は勿論、家計簿の公開、閲覧が可能です。<br>
+      他の家計簿主さんと繋がり、やりくり上手を目指しましょう。
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-5 offset-6">
+      <%= link_to "新規会員登録", new_user_registration_path, {class: "btn btn-success"}%>
+      <%= link_to "ログイン", new_user_session_path, {class: "btn btn-primary"} %>
+    </div>
+  </div>
+
+</div>
