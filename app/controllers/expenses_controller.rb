@@ -29,7 +29,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user_id = current_user.id
-    @expense.save
+    @expense.save!
     redirect_to expenses_path
   end
 
