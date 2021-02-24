@@ -1,19 +1,35 @@
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-1 pt-3">
+      <h2>ログイン</h2>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+    <div class="field col-10 offset-2">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field col-10 offset-2">
+      <%= f.label :password, "パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions col-10 offset-2 pt-3">
+      <%= f.submit "ログイン" %>
+    </div>
+
+  <% end %>
+    <div class="col-11 offset-1 pt-3">
+      <h5>会員登録がお済みでない方</h5>
+    </div>
+    <div class="col-10 offset-2">
+      <p><%= link_to "こちら", new_user_registration_path %>から新規登録を行ってください。</p>
+    </div>
   </div>
-<% end %>
-<h5>会員登録がお済みでない方</h5>
-<p><%= link_to "こちら", new_user_registration_path %>から新規登録を行ってください。</p>
+</div>
