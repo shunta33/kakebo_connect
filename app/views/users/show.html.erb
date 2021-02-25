@@ -1,30 +1,52 @@
-<h2>マイページ</h2>
-<h4>登録情報</h4>
-<%= link_to "メールアドレス・パスワードを変更", edit_user_registration_path %>
-<%= link_to "プロフィールを変更", edit_user_path(@user.id) %>
-<table>
-  <tr>
-    <td>ハンドルネーム</td>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <td>1カ月の目標支出額</td>
-    <td>
-      <%= if @user.target_expenses.blank?
-            p "未設定"
-          else
-            p @user.target_expenses
-          end %>
-    </td>
-  </tr>
-  <tr>
-    <td>コメント</td>
-    <td>
-      <%= if @user.comment.blank?
-            p "未設定"
-          else
-            p @user.comment
-          end %>
-    </td>
-  </tr>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-5 offset-1 pt-3">
+      <h2>マイページ</h2>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-5 offset-2 pt-3">
+      <h4>登録情報</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <table class="table">
+        <tr>
+          <td>ハンドルネーム</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>1カ月の目標支出額</td>
+          <td>
+            <%= if @user.target_expenses.blank?
+                  p "未設定"
+                else
+                  p @user.target_expenses
+                end %>
+          </td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td>
+            <%= if @user.comment.blank?
+                  p "未設定"
+                else
+                  p @user.comment
+                end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 offset-5">
+      <%= link_to "メールアドレス・パスワードを変更", edit_user_registration_path, {class: "btn btn-success"} %>
+      <%= link_to "プロフィールを変更", edit_user_path(@user.id), {class: "btn btn-success"} %>
+    </div>
+  </div>
+
+</div>
