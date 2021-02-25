@@ -1,46 +1,69 @@
-<h2><%= @month %>月の支出履歴</h2>
 
-<%= form_with url:'/expenses', local:true, method: :get do |f| %>
-<%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
-<%= f.submit "へ移動" %>
-<% end %>
-<table>
-    <tr>
-      <th>日付</th>
-      <th>カテゴリ</th>
-      <th>金額</th>
-    </tr>
-    <% @sum = 0 %>
-    <% @expenses.each do |expense| %>
-    <tr>
-      <td><%= expense.date %></td>
-      <td><%= expense.expenses_category_id %></td>
-      <td><%= expense.expenses_amount %></td>
-    </tr>
-    <% @sum += expense.expenses_amount %>
+<div class="container">
+  <div class="row">
+    <div class="col-7 offset-1 pt-3">
+      <h2><%= @year %>年<%= @month %>月の支出履歴</h2>
+    </div>
+  </div>
+  <%= form_with url:'/expenses', local:true, method: :get do |f| %>
+  <div class="row pt-3">
+    <div class="col-3 offset-9">
+      <%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %><%= f.submit "へ移動" %>
+    </div>
     <% end %>
-</table>
-<p>合計支出<%= @sum %></p>
-
-<%= form_with model:@expense, local:true do |f| %>
-  <div class="field">
-    <%= f.label :date, "日付" %><br />
-    <%= f.date_select :date, use_month_numbers:true, date_separator: '/' %>
   </div>
 
-  <div class="field">
-    <%= f.label :expenses_amount, "支出額" %><br />
-    <%= f.number_field :expenses_amount %>
+  <%= form_with model:@expense, local:true do |f| %>
+  <div class="row">
+    <div class="col-3 offset-1">
+      <div class="field">
+        <%= f.label :date, "日付" %><br />
+        <%= f.date_select :date, use_month_numbers:true, date_separator: '/' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :expenses_amount, "支出額" %><br />
+        <%= f.number_field :expenses_amount %>
+      </div>
+
+      <div class="field">
+        <%= f.label :expense_category_id, "カテゴリー" %><br />
+        <%= f.collection_select :expenses_category_id, @expense_categories.all, :id, :category_name %>
+      </div>
+      <div class="actions pt-3">
+        <%= f.submit "支出を記録する" %>
+      </div>
+    <% end %>
+    </div>
+
+
+    <div class="col-7">
+      <table class="table">
+        <tr class="thead-light">
+          <th>日付</th>
+          <th>カテゴリ</th>
+          <th>金額</th>
+          <th></th>
+        </tr>
+        <% @sum = 0 %>
+        <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.date %></td>
+          <td><%= expense.expenses_category_id %></td>
+          <td><%= expense.expenses_amount %></td>
+          <td><%= link_to "削除", expense_path(expense.id), method: :delete %></td>
+        </tr>
+        <% @sum += expense.expenses_amount %>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-3 offset-8">
+      <table class="table table-bordered">
+        <tr>
+          <th class="table-active">合計支出</th>
+          <th><%= @sum %></th>
+        </tr>
+      </table>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :expense_category_id, "カテゴリー" %><br />
-    <%= f.collection_select :expenses_category_id, @expense_categories.all, :id, :category_name %>
-  </div>
-
-
-
-  <div class="actions">
-    <%= f.submit "支出を記録する" %>
-  </div>
-<% end %>
+</div>

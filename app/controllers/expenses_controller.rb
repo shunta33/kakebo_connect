@@ -20,6 +20,7 @@ class ExpensesController < ApplicationController
         }
       )
     @month = month
+    @year = year
 
   end
 
@@ -37,6 +38,9 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+    @expense = Expense.find(params[:id])
+    @expense.delete
+    redirect_to expenses_path
   end
 
   private
