@@ -20,6 +20,7 @@ class IncomesController < ApplicationController
         }
       )
     @month = month
+    @year = year
 
   end
 
@@ -37,6 +38,9 @@ class IncomesController < ApplicationController
   end
 
   def destroy
+    @income = Income.find(params[:id])
+    @income.delete
+    redirect_to incomes_path
   end
 
   private

@@ -1,47 +1,78 @@
-<h2><%= @month %>月の収入履歴</h2>
-
-<%= form_with url:'/incomes', local:true, method: :get do |f| %>
-<%= f.select :month, Income.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
-<%= f.submit "へ移動" %>
-<% end %>
-<table>
-    <tr>
-      <th>日付</th>
-      <th>カテゴリ</th>
-      <th>金額</th>
-    </tr>
-    <% @sum = 0 %>
-    <% @incomes.each do |income| %>
-    <tr>
-      <td><%= income.date %></td>
-      <td><%= income.incomes_category_id %></td>
-      <td><%= income.incomes_amount %></td>
-    </tr>
-    <% @sum += income.incomes_amount %>
+<div class="container">
+  <div class="row">
+    <div class="col-7 offset-1 pt-3">
+      <h2><%= @year %>年<%= @month %>月の収入履歴</h2>
+    </div>
+  </div>
+  <%= form_with url:'/incomes', local:true, method: :get do |f| %>
+  <div class="row pt-3">
+    <div class="col-3 offset-9">
+      <%= f.select :month, Income.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %><%= f.submit "へ移動" %>
+    </div>
     <% end %>
-</table>
-<p>合計支出<%= @sum %></p>
 
+  </div>
 
 <%= form_with model:@income, local:true do |f| %>
-  <div class="field">
-    <%= f.label :date, "日付" %><br />
-    <%= f.date_select :date, use_month_numbers:true, date_separator: '/' %>
-  </div>
+<div class="row">
+  <div class="col-3 offset-1">
+    <div class="field">
+      <%= f.label :date, "日付" %><br />
+      <%= f.date_select :date, use_month_numbers:true, date_separator: '/' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :incomes_amount, "収入額" %><br />
-    <%= f.number_field :incomes_amount %>
-  </div>
+    <div class="field">
+      <%= f.label :incomes_amount, "収入額" %><br />
+      <%= f.number_field :incomes_amount %>
+    </div>
 
-  <div class="field">
-    <%= f.label :incomes_category_id, "カテゴリー" %><br />
-    <%= f.collection_select :incomes_category_id, @income_categories.all, :id, :category_name %>
-  </div>
-
-
-
-  <div class="actions">
+    <div class="field">
+      <%= f.label :incomes_category_id, "カテゴリー" %><br />
+      <%= f.collection_select :incomes_category_id, @income_categories.all, :id, :category_name %>
+    </div>
+  <div class="actions pt-3">
     <%= f.submit "収入を記録する" %>
   </div>
 <% end %>
+</div>
+
+
+  <div class="col-7">
+    <table class="table">
+      <tr class="thead-light">
+        <th>日付</th>
+        <th>カテゴリ</th>
+        <th>金額</th>
+        <th></th>
+      </tr>
+      <% @sum = 0 %>
+      <% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.date %></td>
+        <td><%= income.incomes_category_id %></td>
+        <td><%= income.incomes_amount %></td>
+        <td><%= link_to "削除", income_path(income.id), method: :delete %></td>
+      </tr>
+      <% @sum += income.incomes_amount %>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-3 offset-8">
+    <table class="table table-bordered">
+      <tr>
+        <th class="table-active">合計支出</th>
+        <th><%= @sum %></th>
+      </tr>
+    </table>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
