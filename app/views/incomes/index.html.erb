@@ -27,8 +27,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :incomes_category_id, "カテゴリー" %><br />
-      <%= f.collection_select :incomes_category_id, @income_categories.all, :id, :category_name %>
+      <%= f.label :income_category_id, "カテゴリー" %><br />
+      <%= f.collection_select :income_category_id, @income_categories.all, :id, :category_name %>
     </div>
   <div class="actions pt-3">
     <%= f.submit "収入を記録する" %>
@@ -49,7 +49,7 @@
       <% @incomes.each do |income| %>
       <tr>
         <td><%= income.date %></td>
-        <td><%= income.incomes_category_id %></td>
+        <td><%= income.income_category.category_name %></td>
         <td><%= income.incomes_amount %></td>
         <td><%= link_to "削除", income_path(income.id), method: :delete %></td>
       </tr>

@@ -49,7 +49,7 @@
         <% @expenses.each do |expense| %>
         <tr>
           <td><%= expense.date %></td>
-          <td><%= expense.expenses_category_id %></td>
+          <td><%= expense.expense_category.category_name %></td>
           <td><%= expense.expenses_amount %></td>
           <td><%= link_to "削除", expense_path(expense.id), method: :delete %></td>
         </tr>
