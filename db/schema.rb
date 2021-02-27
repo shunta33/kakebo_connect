@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_075404) do
+ActiveRecord::Schema.define(version: 2021_02_27_042749) do
 
   create_table "expense_categories", force: :cascade do |t|
     t.integer "user_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_075404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
-    t.integer "expenses_category_id"
+    t.integer "expense_category_id"
   end
 
   create_table "fixed_expenses", force: :cascade do |t|
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_075404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
-    t.integer "incomes_category_id"
+    t.integer "income_category_id"
   end
 
   create_table "reports", force: :cascade do |t|
