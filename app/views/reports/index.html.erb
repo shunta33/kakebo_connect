@@ -1,16 +1,31 @@
-<table>
-  <tr>
-    <td>名前</td>
-    <td>目標</td>
-    <td>目標金額</td>
-    <td></td>
-  </tr>
-  <% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.comment %></td>
-    <td><%= user.target_expenses %></td>
-    <td><%= link_to "家計簿を覗く",report_path(user) %></td>
-  </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-5 offset-1 pt-3">
+      <h2>家計簿一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-2 pt-3">
+      <table class="table ">
+        <tr class="thead-light">
+          <th>名前</th>
+          <th>目標金額</th>
+          <th></th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= if user.target_expenses.blank?
+                  p "未設定"
+                else
+                  p user.target_expenses.to_s+"円"
+                end %></td>
+          <td><%= link_to "家計簿を覗く",report_path(user) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
