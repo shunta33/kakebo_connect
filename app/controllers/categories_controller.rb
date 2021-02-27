@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = IncomeCategory.all
-    @category = IncomeCategory.new
+    @categories = ExpenseCategory.all
+    @category = ExpenseCategory.new
   end
 
   def create
-    @category = IncomeCategory.new(category_params)
+    @category = ExpenseCategory.new(category_params)
     @category.save
     redirect_to categories_path
   end
@@ -14,6 +14,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:income_category).permit(:category_name)
+    params.require(:expense_category).permit(:category_name)
   end
 end
