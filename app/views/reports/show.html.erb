@@ -1,63 +1,78 @@
-<h2><%= @user.name %>さんの<%= @month %>月レポート</h2>
-
-<%= form_with url: report_path(params[:id]), local:true, method: :get do |f| %>
-  <%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
-  <%= f.submit "へ移動" %>
-<% end %>
-
-<% @expenses_sum = 0 %>
-<% @expenses.each do |expense| %>
-  <% @expenses_sum += expense.expenses_amount %>
-<% end %>
-
-<table>
-  <tr>
-    <th>カテゴリー</th>
-    <th>支出額</th>
-  </tr>
-  <% ExpenseCategory.all.each do |category| %>
-  <tr>
-    <td>
-    <%= category.category_name %>
-    </td>
-    <td>
-    <%= @expenses
-     .where(expenses_category_id: category).pluck(:expenses_amount).sum %>
-    </td>
-  </tr>
-   <% end %>
-  <tr>
-    <th>合計支出額</th>
-    <th><%= @expenses_sum %></th>
-  </tr>
-</table>
-
-<% @incomes_sum = 0 %>
-<% @incomes.each do |income| %>
-    <% @incomes_sum += income.incomes_amount %>
-<% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-7 offset-1 pt-3">
+      <h2><%= @user.name %>さんの<%= @month %>月レポート</h2>
+    </div>
+  </div>
 
 
-<table>
-  <tr>
-    <th>カテゴリー</th>
-    <th>収入支出額</th>
-  </tr>
-  <% IncomeCategory.all.each do |category| %>
-  <tr>
-    <td>
-    <%= category.category_name %>
-    </td>
-    <td>
-    <%= @incomes
-     .where(incomes_category_id: category).pluck(:incomes_amount).sum %>
-    </td>
-  </tr>
-   <% end %>
-  <tr>
-    <th>合計収入額</th>
-    <th><%= @incomes_sum %></th>
-  </tr>
-</table>
+      <%= form_with url: report_path(params[:id]), local:true, method: :get do |f| %>
+      <div class="row">
+        <div class="col-2 offset-9 pt-3">
+          <%= f.select :month, Expense.pluck(:date).map{|d|["#{d.year}/#{d.month}","#{d.year}/#{d.month}"]}.uniq %>
+          <%= f.submit "へ移動" %>
+        </div>
+      </div>
 
+      <% end %>
+
+      <% @expenses_sum = 0 %>
+      <% @expenses.each do |expense| %>
+        <% @expenses_sum += expense.expenses_amount %>
+      <% end %>
+  <div class="row pt-1 pb-5 mb-5">
+    <div class="col-5 offset-1">
+      <table class="table">
+        <tr>
+          <th>カテゴリー</th>
+          <th>支出額</th>
+        </tr>
+        <% ExpenseCategory.all.each do |category| %>
+        <tr>
+          <td>
+          <%= category.category_name %>
+          </td>
+          <td>
+          <%= @expenses
+           .where(expense_category_id: category).pluck(:expenses_amount).sum %>
+          </td>
+        </tr>
+         <% end %>
+        <tr>
+          <th>合計支出額</th>
+          <th><%= @expenses_sum %></th>
+        </tr>
+      </table>
+
+      <% @incomes_sum = 0 %>
+      <% @incomes.each do |income| %>
+          <% @incomes_sum += income.incomes_amount %>
+      <% end %>
+      </table>
+    </div>
+
+    <div class="col-5">
+      <table class="table">
+        <tr>
+          <th>カテゴリー</th>
+          <th>収入支出額</th>
+        </tr>
+        <% IncomeCategory.all.each do |category| %>
+        <tr>
+          <td>
+          <%= category.category_name %>
+          </td>
+          <td>
+          <%= @incomes
+           .where(income_category_id: category).pluck(:incomes_amount).sum %>
+          </td>
+        </tr>
+         <% end %>
+        <tr>
+          <th>合計収入額</th>
+          <th><%= @incomes_sum %></th>
+        </tr>
+      </table>
+    </div>
+    </div>
+</div>
