@@ -23,7 +23,7 @@
 
     <div class="field">
       <%= f.label :incomes_amount, "収入額" %><br />
-      <%= f.number_field :incomes_amount %>
+      <%= f.number_field :incomes_amount %>円
     </div>
 
     <div class="field">
@@ -50,7 +50,7 @@
       <tr>
         <td><%= income.date %></td>
         <td><%= income.income_category.category_name %></td>
-        <td><%= income.incomes_amount %></td>
+        <td><%= income.incomes_amount %>円</td>
         <td><%= link_to "削除", income_path(income.id), method: :delete %></td>
       </tr>
       <% @sum += income.incomes_amount %>
@@ -61,7 +61,7 @@
     <table class="table table-bordered">
       <tr>
         <th class="table-active">合計収入</th>
-        <th><%= @sum %></th>
+        <th><%= @sum %>円</th>
       </tr>
     </table>
   </div>

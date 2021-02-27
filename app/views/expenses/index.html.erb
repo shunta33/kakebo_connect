@@ -23,7 +23,7 @@
 
       <div class="field">
         <%= f.label :expenses_amount, "支出額" %><br />
-        <%= f.number_field :expenses_amount %>
+        <%= f.number_field :expenses_amount %>円
       </div>
 
       <div class="field">
@@ -50,7 +50,7 @@
         <tr>
           <td><%= expense.date %></td>
           <td><%= expense.expense_category.category_name %></td>
-          <td><%= expense.expenses_amount %></td>
+          <td><%= expense.expenses_amount %>円</td>
           <td><%= link_to "削除", expense_path(expense.id), method: :delete %></td>
         </tr>
         <% @sum += expense.expenses_amount %>
@@ -61,7 +61,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="table-active">合計支出</th>
-          <th><%= @sum %></th>
+          <th><%= @sum %>円</th>
         </tr>
       </table>
     </div>

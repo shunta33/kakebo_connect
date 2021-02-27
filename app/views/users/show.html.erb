@@ -24,7 +24,7 @@
             <%= if @user.target_expenses.blank?
                   p "未設定"
                 else
-                  p @user.target_expenses
+                  p @user.target_expenses.to_s+"円"
                 end %>
           </td>
         </tr>
